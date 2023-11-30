@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { Nav } from "react-bootstrap";
 function Detail(props) {
   let [alert, setAlert] = useState(true);
-
+  let [fade2, setFade2] = useState('');
   let [count, setCount] = useState(0);
 
   let { id } = useParams();
@@ -12,6 +12,13 @@ function Detail(props) {
   let 찾은상품 = props.shoes.find(function (x) {
     return x.id == id; //props(data.js이죠).shoes 안에 id중 param의 값과 같으면 출력
   });
+
+  useEffect(()=>{
+    setFade2('end')
+    return ()=>{
+      setFade2('')
+    }
+  },[])
 
   useEffect(() => {
     //페이지가 업데이트 될 때마다 실해됨 (예를들어 버튼이 눌리면 이 부분이 실행됨)
@@ -36,7 +43,7 @@ function Detail(props) {
   //   }
   // }, [])
   return (
-    <div className="container">
+    <div className={'container start ' + fade2}>
       {alert === true ? (
         <div className="alert alert-warning">2초이내 구매시 할인</div>
       ) : null}
@@ -88,7 +95,23 @@ function Detail(props) {
   );
 }
  function TabContent({탭}){
- return [<div>내용0</div>, <div>내용1</div>, <div>내용2</div>][탭] //{탭}번째 항목을 꺼내주세요 라는 뜻
+
+  let [fade, setFade] = useState('');
+
+  useEffect(() => {
+    setTimeout(() => {
+      setFade('end');
+    }, 300);
+  
+    return () => {
+      setFade('');
+    };
+  }, [탭]); //탭이라는 state가 변경될때마다 실행됨
+
+ return ( 
+  <div className={`start ${fade}`}>
+    {[<div>내용0</div>, <div>내용1</div>, <div>내용2</div>][탭]}
+  </div>)
  }
 
 export default Detail;
