@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import data from "./data.js";
 import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
 import Detail from "./routes/Detail.js";
+import Cart from "./routes/Cart.js";
 import axios from "axios";
 function App() {
   let [shoes, setShoes] = useState(data);
@@ -32,6 +33,13 @@ function App() {
               }}
             >
               Detail
+            </Nav.Link>
+            <Nav.Link
+              onClick={() => {
+                navigate("/cart");
+              }}
+            >
+              Cart
             </Nav.Link>
           </Nav>
         </Container>
@@ -77,6 +85,9 @@ function App() {
           }
         />
         <Route path="/detail/:id" element={<Detail shoes={shoes} />} />
+
+        <Route path="/cart" element={<Cart/>}></Route>
+
       </Routes>
       
     </div>
