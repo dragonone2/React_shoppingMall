@@ -34,6 +34,14 @@ styled-components를 활용하여 CSS 파일을 따로 생성하지 않고 스�
 ### 탭 UI 만들기
 리액트를 사용하여 탭 UI를 만드는 방법을 학습했습니다.
 
+### Context API
+props를 대신하여 state 정보를 전달할 수 있는 Context API에 대하여 학습합니다.
+
+### Redux
+props를 대신하여 state정보를 공유하는 라이브러리인 Redux에 대하여 학습합니다.
+
+### localStorage
+
 ## 사용법
 1. 프로젝트를 클론합니다.
 
