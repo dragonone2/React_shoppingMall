@@ -9,10 +9,31 @@ import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
 import Detail from "./routes/Detail.js";
 import Cart from "./routes/Cart.js";
 import axios from "axios";
+import { useQuery } from "react-query";
 function App() {
+
+  useEffect(()=>{
+    localStorage.setItem('watched', JSON.stringify([]))
+  })
+
+  // let obj = {name: 'kim'}
+  // localStorage.setItem('data', JSON.stringify(obj))  //넣을때는 array/object를 JSON으로 바꿔서 넣기
+
+  // let 꺼낸거 = localStorage.getItem('data')         
+  // console.log(JSON.parse(꺼낸거).name); //꺼낼때는 JSON을 다시 array/object로 바꾸기
+
+
   let [shoes, setShoes] = useState(data);
   let navigate = useNavigate();
   let [count, setCount] = useState(2);
+
+ 
+  let result = useQuery('작명', ()=>{
+    return axios.get('https://codingapple1.github.io/userdata.json')
+    .then((a)=>{ return a.data })
+  })
+
+
 
   return (
     <div className="App">

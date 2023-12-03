@@ -12,9 +12,14 @@ function Detail(props) {
   let [탭, 탭변경] = useState(0);
   let dispatch = useDispatch()
 
-  let 찾은상품 = props.shoes.find(function (x) {
-    return x.id == id; //props(data.js이죠).shoes 안에 id중 param의 값과 같으면 출력
-  });
+  let 찾은상품 = props.shoes.find(x => x.id == id);
+
+  useEffect(()=>{
+    let 꺼낸상품 = localStorage.getItem('watched')
+    꺼낸상품 = JSON.parse(꺼낸상품)
+    꺼낸상품.push(찾은상품.id)
+    localStorage.setItem('watched', JSON.stringify(꺼낸상품))
+  }, [])
 
   useEffect(()=>{
     setFade2('end')
